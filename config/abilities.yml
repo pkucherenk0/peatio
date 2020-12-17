@@ -79,7 +79,11 @@ admin_permissions:
       - TradingFee
       - Wallet
     read:
+      - Trade
+      - Order
       - Member
+    update:
+      - Order
   accountant:
     read:
       - Operations::Account
@@ -124,7 +128,8 @@ admin_permissions:
       - PaymentAddress
       - Deposit
       - Withdraw
-
+      - Trade
+      - Order
 
 user_permissions:
   superadmin:
