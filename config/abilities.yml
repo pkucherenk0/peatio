@@ -9,7 +9,7 @@ roles:
   - broker
   - trader
   - maker
-  - service_account
+  - sa_maker
 
 admin_permissions:
   superadmin:
@@ -155,7 +155,7 @@ user_permissions:
     manage: all
   maker:
     manage: all
-  service_account:
+  sa_maker:
     read:
       - Operations::Account
       - Order
