@@ -9,6 +9,7 @@ roles:
   - broker
   - trader
   - maker
+  - provider
   - sa_maker
 
 admin_permissions:
@@ -97,10 +98,16 @@ admin_permissions:
       - PaymentAddress
       - Deposit
       - Withdraw
+      - WithdrawLimit
       - Blockchain
       - Currency
+      - Engine
+      - Market
+      - TradingFee
+      - Wallet
       - Trade
       - Order
+      - Adjustment
     create:
       - Deposits::Fiat
       - Adjustment
@@ -116,6 +123,9 @@ admin_permissions:
       - PaymentAddress
       - Deposit
       - Withdraw
+      - Currency
+      - Engine
+      - Market
   support:
     read:
       - Operations::Account
@@ -133,6 +143,7 @@ admin_permissions:
       - Market
       - Trade
       - Order
+
 
 user_permissions:
   superadmin:
@@ -155,6 +166,8 @@ user_permissions:
     manage: all
   maker:
     manage: all
+  provider:
+    manage: all
   sa_maker:
     read:
       - Operations::Account
@@ -165,4 +178,3 @@ user_permissions:
       - Order
     update:
       - Order
-    
