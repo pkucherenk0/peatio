@@ -74,11 +74,21 @@ admin_permissions:
       - Operations::Liability
       - Operations::Revenue
       - Member
+      - Account
+      - Beneficiary
+      - PaymentAddress
       - Deposit
       - Withdraw
-      - Account
-      - PaymentAddress
-      - Beneficiary
+      - WithdrawLimit
+      - Blockchain
+      - Currency
+      - Engine
+      - Market
+      - TradingFee
+      - Wallet
+      - Trade
+      - Order
+      - Adjustment
     update:
       - Deposit
       - Withdraw
@@ -91,13 +101,15 @@ admin_permissions:
       - Operations::Asset
       - Operations::Expense
       - Operations::Liability
-      - Operations::Revenue
       - Member
+      - Account
+      - Beneficiary
+      - PaymentAddress
       - Deposit
       - Withdraw
-      - Account
-      - PaymentAddress
-      - Beneficiary
+      - Currency
+      - Engine
+      - Market
     update:
       - Deposit
       - Withdraw
