@@ -9,7 +9,6 @@ roles:
   - broker
   - trader
   - maker
-  - provider
   - sa_maker
 
 admin_permissions:
@@ -165,8 +164,6 @@ user_permissions:
   trader:
     manage: all
   maker:
-    manage: all
-  provider:
     manage: all
   sa_maker:
     read:
