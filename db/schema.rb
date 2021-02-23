@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_20_135842) do
+ActiveRecord::Schema.define(version: 2021_02_19_144535) do
 
   create_table "accounts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "member_id", null: false
@@ -172,6 +172,16 @@ ActiveRecord::Schema.define(version: 2021_01_20_135842) do
     t.index ["reference_type", "reference_id"], name: "index_expenses_on_reference_type_and_reference_id"
   end
 
+  create_table "internal_transfers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "currency_id", null: false
+    t.decimal "amount", precision: 32, scale: 16, null: false
+    t.bigint "sender_id", null: false
+    t.bigint "receiver_id", null: false
+    t.integer "state", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "pointer", unsigned: true
@@ -285,6 +295,7 @@ ActiveRecord::Schema.define(version: 2021_01_20_135842) do
     t.bigint "member_id"
     t.bigint "wallet_id"
     t.string "address", limit: 95
+    t.boolean "remote", default: false, null: false
     t.string "secret_encrypted"
     t.string "details_encrypted", limit: 1024
     t.datetime "created_at", null: false
@@ -363,6 +374,7 @@ ActiveRecord::Schema.define(version: 2021_01_20_135842) do
     t.index ["market_id", "created_at"], name: "index_trades_on_market_id_and_created_at"
     t.index ["taker_id"], name: "index_trades_on_taker_id"
     t.index ["taker_order_id"], name: "index_trades_on_taker_order_id"
+    t.index ["taker_type"], name: "index_trades_on_taker_type"
   end
 
   create_table "trading_fees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -433,6 +445,16 @@ ActiveRecord::Schema.define(version: 2021_01_20_135842) do
     t.index ["kind", "status"], name: "index_wallets_on_kind_and_currency_id_and_status"
     t.index ["kind"], name: "index_wallets_on_kind"
     t.index ["status"], name: "index_wallets_on_status"
+  end
+
+  create_table "whitelisted_smart_contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "description"
+    t.string "address", null: false
+    t.string "state", limit: 30, null: false
+    t.string "blockchain_key", limit: 32, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address", "blockchain_key"], name: "index_whitelisted_smart_contracts_on_address_and_blockchain_key", unique: true
   end
 
   create_table "withdraw_limits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
